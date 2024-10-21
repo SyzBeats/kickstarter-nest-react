@@ -6,6 +6,8 @@ import {
 
 import { AppModule } from './root.module';
 import bootstrapSwagger from '../aop/swagger';
+import { ValidationPipe } from '@nestjs/common';
+import keys from 'src/aop/keys';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -14,6 +16,12 @@ async function bootstrap() {
   );
 
   bootstrapSwagger(app);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      disableErrorMessages: !!keys.isProd,
+    }),
+  );
 
   await app.listen({
     port: 3000,

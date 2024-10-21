@@ -11,7 +11,7 @@ const { mongoUri, mongoPoolSize } = keys;
  * to connect to the right database first and pass it to the app.
  *
  * Other modules can then make use of it via `constructor(@Inject('MONGO_DB_CLIENT') private db: Db) {}`
- * */
+ **/
 
 const databaseProviders = [
   {

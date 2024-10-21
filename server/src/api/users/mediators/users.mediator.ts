@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { CashflowsService } from 'src/domain/cashflows/cashflows.service';
 import { UsersService } from 'src/domain/users/users.service';
+import { CreateUserDto } from '../dto/user.input-dto';
 
 @Injectable()
 export class UsersMediator {
@@ -10,8 +11,8 @@ export class UsersMediator {
     private cashflowsService: CashflowsService,
   ) {}
 
-  async create() {
-    return this.usersService.create();
+  async create(dto: CreateUserDto) {
+    return this.usersService.create(dto);
   }
 
   async getById() {

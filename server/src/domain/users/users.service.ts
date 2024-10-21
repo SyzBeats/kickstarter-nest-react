@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from 'src/api/users/dto/user.input-dto';
 
 @Injectable()
 export class UsersService {
-  async create() {}
+  async create(input: CreateUserDto) {
+    console.log(input);
+  }
 
   async getById() {
     return 'User by ID';
