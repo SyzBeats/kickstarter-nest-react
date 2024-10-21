@@ -4,6 +4,10 @@
 
 This is a documentation for the budget planner application. It provides a web-based user interface (UI) and an API for managing personal budgets.
 
-### Endpoint 1
+Technologies:
 
-Description of endpoint 1.
+- Nest.js
+- Fastify
+- MongoDB
+- React.js
+- TypeScript
