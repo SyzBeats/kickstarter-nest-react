@@ -1,0 +1,24 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./server:/app
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: r00t
+      MONGO_INITDB_ROOT_PASSWORD: iamSuper!ns3cur3
+      ME_CONFIG_MONGODB_URL: mongodb://r00t:iamSuper!ns3cur3@mongo:27017/
+      ME_CONFIG_BASICAUTH: false

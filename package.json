@@ -1,0 +1,12 @@
+{
+	"name": "kickstarter-budget-planner-ui",
+	"version": "1.0.0",
+	"description": "Kickstarting a react project with a simple budget planner UI",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Simeon Zimmermann - SZ WEB DEVELOPMENT",
+	"license": "ISC"
+}
