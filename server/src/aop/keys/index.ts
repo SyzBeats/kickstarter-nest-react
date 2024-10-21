@@ -1,7 +1,9 @@
+// Ensures .env ist loaded within non module file
+import 'dotenv/config';
+
 const keys = {
   port: process.env.PORT ?? 3000,
-  mongoUri:
-    process.env.MONGO_URI ?? 'mongodb://r00t:iamSuper!ns3cur3@mongo-db:27017/',
+  mongoUri: process.env.MONGO_URI ?? '',
   mongoPoolSize: 5,
 };
 

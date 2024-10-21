@@ -13,7 +13,7 @@ const databaseProviders = [
           minPoolSize: mongoPoolSize,
         });
 
-        console.log('connected to db');
+        console.info('[DB]: 🟢 Successfully connected to mongodb');
 
         return client;
       } catch (e) {
