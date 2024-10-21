@@ -1,11 +1,13 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
-import { LoggerMiddleware } from '../aop/logger/logger.middleware';
 import { PersistenceModule } from 'src/persistence/persistence.module';
 import { ApiModule } from 'src/api/api.module';
+import { AopModule } from 'src/aop/aop.module';
+
+import { LoggerMiddleware } from '../aop/logger/logger.middleware';
 
 @Module({
-  imports: [ApiModule, PersistenceModule],
+  imports: [AopModule, ApiModule, PersistenceModule],
   controllers: [],
   providers: [],
 })

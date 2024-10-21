@@ -1,18 +1,6 @@
 version: '3'
 services:
-  server:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    depends_on:
-      - db
-    environment:
-      NODE_ENV: development
-    volumes:
-      - ./server:/app
-  db:
+  mongo-db:
     image: mongo
     restart: always
     ports:
@@ -22,3 +10,28 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: iamSuper!ns3cur3
       ME_CONFIG_MONGODB_URL: mongodb://r00t:iamSuper!ns3cur3@mongo:27017/
       ME_CONFIG_BASICAUTH: false
+    networks:
+      - budget-planner-network
+    container_name: mongo-db
+
+  server:
+    depends_on:
+      - mongo-db
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    restart: always
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./server:/app
+    networks:
+      - budget-planner-network
+    links:
+      - mongo-db
+
+networks:
+  budget-planner-network:
+    driver: bridge
