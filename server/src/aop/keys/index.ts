@@ -5,6 +5,7 @@ const keys = {
   port: process.env.PORT ?? 3000,
   mongoUri: process.env.MONGO_URI ?? '',
   mongoPoolSize: 5,
+  dbName: 'budget-planner',
 };
 
 export default keys;
