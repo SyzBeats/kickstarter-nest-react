@@ -1,5 +1,17 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { FastifyRequest } from 'fastify';
+
+import { User } from 'src/domain/users/user';
 
 import { UsersMediator } from '../mediators/users.mediator';
 import { CreateUserDto } from '../dto/user.input-dto';
@@ -10,8 +22,8 @@ export class UsersController {
   constructor(private usersMediator: UsersMediator) {}
 
   @Post()
-  async create(@Body() dto: CreateUserDto) {
-    return this.usersMediator.create(dto);
+  async create(@Req() request: FastifyRequest, @Body() dto: CreateUserDto) {
+    return this.usersMediator.create(dto, request.appContext);
   }
 
   @Get()
@@ -20,8 +32,11 @@ export class UsersController {
   }
 
   @Get('/:id')
-  async getById() {
-    return this.usersMediator.getById();
+  async getById(
+    @Param('id') id: string,
+    @Req() request: FastifyRequest,
+  ): Promise<User> {
+    return this.usersMediator.getById(id, request.appContext);
   }
 
   @Put()
