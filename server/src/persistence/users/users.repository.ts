@@ -23,6 +23,15 @@ export class UsersRepository implements IUserRepository {
     return deserialized;
   }
 
+  async getAll(context: AppContext): Promise<User[]> {
+    const documents = await context.db
+      .collection('users')
+      .find<UsersMongoDocument>({})
+      .toArray();
+
+    return documents.map(UsersMongoDocument.deserialize);
+  }
+
   async getById(id: string, context: AppContext): Promise<User> {
     const document = await context.db
       .collection('users')

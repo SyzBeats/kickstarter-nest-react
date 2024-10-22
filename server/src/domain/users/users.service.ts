@@ -18,8 +18,8 @@ export class UsersService {
     return this.usersRepository.getById(id, context);
   }
 
-  async getAll() {
-    return 'All users';
+  async getAll(context: AppContext): Promise<User[]> {
+    return this.usersRepository.getAll(context);
   }
 
   async update() {

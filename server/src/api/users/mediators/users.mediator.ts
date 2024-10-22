@@ -22,8 +22,8 @@ export class UsersMediator {
     return this.usersService.getById(id, context);
   }
 
-  async getAll() {
-    return this.usersService.getAll();
+  async getAll(context: AppContext): Promise<User[]> {
+    return this.usersService.getAll(context);
   }
 
   async update() {

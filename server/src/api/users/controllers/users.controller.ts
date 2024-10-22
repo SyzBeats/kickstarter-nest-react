@@ -27,8 +27,8 @@ export class UsersController {
   }
 
   @Get()
-  async getAll() {
-    return this.usersMediator.getAll();
+  async getAll(@Req() request: FastifyRequest): Promise<User[]> {
+    return this.usersMediator.getAll(request.appContext);
   }
 
   @Get('/:id')
