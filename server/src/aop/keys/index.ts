@@ -7,6 +7,7 @@ const keys = {
   mongoUri: process.env.MONGO_URI ?? '',
   mongoPoolSize: 5,
   dbName: 'budget-planner',
+  jwtSecret: process.env.JWT_SECRET || '123456789',
 };
 
 export default keys;
