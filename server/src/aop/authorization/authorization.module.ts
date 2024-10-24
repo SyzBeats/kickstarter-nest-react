@@ -5,6 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import keys from '../keys';
 import { UsersDomainModule } from 'src/domain/users/users.module';
+import { AuthenticationGuard } from './guards/authentication.guard';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { UsersDomainModule } from 'src/domain/users/users.module';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [JwtStrategy],
+  providers: [JwtStrategy, AuthenticationGuard],
   controllers: [],
   exports: [],
 })

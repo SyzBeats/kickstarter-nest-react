@@ -8,12 +8,14 @@ import {
 } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { FastifyRequest } from 'fastify';
+import { Public } from '../decorators/public.decorator';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
+  @Public()
   @Post('login')
   // Todo: implement the DTO
   signIn(

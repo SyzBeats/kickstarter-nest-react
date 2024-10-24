@@ -8,6 +8,7 @@ import { AppModule } from './root.module';
 import bootstrapSwagger from '../aop/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import keys from 'src/aop/keys';
+import { AuthenticationGuard } from 'src/aop/authorization/guards/authentication.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -22,6 +23,9 @@ async function bootstrap() {
       disableErrorMessages: !!keys.isProd,
     }),
   );
+
+  // JWT verification for all routes that are not marked as public
+  app.useGlobalGuards(app.get(AuthenticationGuard));
 
   await app.listen({
     port: 3000,
