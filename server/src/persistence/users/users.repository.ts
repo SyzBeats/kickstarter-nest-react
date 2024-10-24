@@ -9,7 +9,7 @@ import { User } from 'src/domain/users/entities/user';
 export class UsersRepository implements IUserRepository {
   async insert(input: User, context: AppContext): Promise<User> {
     // Todo: Should be strict User type
-    const document = UsersMongoDocument.serialize(input as User);
+    const document = UsersMongoDocument.serialize(input);
 
     const userDocument = await context.db.collection('users').insertOne({
       ...document,
