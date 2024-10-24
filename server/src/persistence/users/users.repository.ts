@@ -1,15 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { IUserRepository } from 'src/domain/users/interfaces/user.repository';
-import { User } from 'src/domain/users/user';
+import { IUserRepository } from 'src/domain/users/interfaces/user.repository.interface';
 import { UsersMongoDocument } from './users.entity';
-import { CreateUserDto } from 'src/api/users/dto/user.input-dto';
 import { AppContext } from 'src/aop/http/context';
 import { ObjectId } from 'mongodb';
+import { User } from 'src/domain/users/entities/user';
 
 @Injectable()
 export class UsersRepository implements IUserRepository {
-  async insert(input: CreateUserDto, context: AppContext): Promise<User> {
-    const document = UsersMongoDocument.serialize(input);
+  async insert(input: User, context: AppContext): Promise<User> {
+    // Todo: Should be strict User type
+    const document = UsersMongoDocument.serialize(input as User);
 
     const userDocument = await context.db.collection('users').insertOne({
       ...document,

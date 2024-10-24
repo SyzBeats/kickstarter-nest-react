@@ -1,6 +1,6 @@
 import { CreateUserDto } from 'src/api/users/dto/user.input-dto';
-import { User } from '../user';
 import { AppContext } from 'src/aop/http/context';
+import { User } from '../entities/user';
 
 export interface IUserRepository {
   insert(input: CreateUserDto, context: AppContext): Promise<User>;

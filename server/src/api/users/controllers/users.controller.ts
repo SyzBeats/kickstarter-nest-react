@@ -11,10 +11,9 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { FastifyRequest } from 'fastify';
 
-import { User } from 'src/domain/users/user';
-
 import { UsersMediator } from '../mediators/users.mediator';
 import { CreateUserDto } from '../dto/user.input-dto';
+import { User } from 'src/domain/users/entities/user';
 
 @Controller('users')
 @ApiTags('users')

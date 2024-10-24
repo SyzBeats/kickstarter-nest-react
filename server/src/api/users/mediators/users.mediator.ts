@@ -5,7 +5,7 @@ import { UsersService } from 'src/domain/users/users.service';
 import { CreateUserDto } from '../dto/user.input-dto';
 
 import { AppContext } from 'src/aop/http/context';
-import { User } from 'src/domain/users/user';
+import { User } from 'src/domain/users/entities/user';
 
 @Injectable()
 export class UsersMediator {
@@ -15,7 +15,8 @@ export class UsersMediator {
   ) {}
 
   async create(dto: CreateUserDto, appContext: AppContext) {
-    return this.usersService.create(dto, appContext);
+    // Todo: Should not be inferred but use a dedicated input interface
+    return this.usersService.create(dto as User, appContext);
   }
 
   async getById(id: string, context: AppContext): Promise<User> {

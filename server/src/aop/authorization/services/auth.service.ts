@@ -24,7 +24,7 @@ export class AuthService {
 
     // Todo: argon2id comparison
 
-    const payload = { sub: user._id, username: user.name };
+    const payload = { sub: user._id, username: user.firstName };
 
     return {
       access_token: await this.jwtService.signAsync(payload),

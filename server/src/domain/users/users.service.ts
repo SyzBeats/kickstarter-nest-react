@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AppContext } from 'src/aop/http/context';
-import { CreateUserDto } from 'src/api/users/dto/user.input-dto';
 import { UsersRepository } from 'src/persistence/users/users.repository';
-import { User } from './user';
+import { User } from './entities/user';
 
 @Injectable()
 export class UsersService {
@@ -10,8 +9,8 @@ export class UsersService {
     @Inject('UsersRepository') private usersRepository: UsersRepository,
   ) {}
 
-  async create(input: CreateUserDto, context: AppContext) {
-    return this.usersRepository.insert(input, context);
+  async create(input: User, context: AppContext) {
+    return this.usersRepository.insert(input as User, context);
   }
 
   async getById(id: string, context: AppContext): Promise<User> {
