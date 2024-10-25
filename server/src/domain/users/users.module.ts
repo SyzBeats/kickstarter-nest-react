@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { UsersService } from './service/users.service';
 import { PersistenceModule } from 'src/persistence/persistence.module';
 
 @Module({

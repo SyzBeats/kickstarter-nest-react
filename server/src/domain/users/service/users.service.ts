@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AppContext } from 'src/aop/http/context';
 import { UsersRepository } from 'src/persistence/users/users.repository';
-import { User } from './entities/user';
-import { CreateUserInput } from './inputs/create-user.input';
-import { UserFactory } from './factories/user.factory';
+import { User } from '../entities/user';
+import { CreateUserInput } from '../inputs/create-user.input';
+import { UserFactory } from '../factories/user.factory';
 
 @Injectable()
 export class UsersService {

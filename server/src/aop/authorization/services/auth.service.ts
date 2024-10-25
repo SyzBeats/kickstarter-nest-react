@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AppContext } from 'src/aop/http/context';
-import { UsersService } from 'src/domain/users/users.service';
+import { UsersService } from 'src/domain/users/service/users.service';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +12,7 @@ export class AuthService {
 
 	async signIn(
 		email: string,
-		pass: string,
+		password: string,
 		context: AppContext,
 	): Promise<{ access_token: string }> {
 		// Todo: decide to query by email or username
@@ -29,5 +29,9 @@ export class AuthService {
 		return {
 			access_token: await this.jwtService.signAsync(payload),
 		};
+	}
+
+	async signUp() {
+		return '';
 	}
 }

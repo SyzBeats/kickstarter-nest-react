@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { CashflowsService } from 'src/domain/cashflows/cashflows.service';
-import { UsersService } from 'src/domain/users/users.service';
+import { UsersService } from 'src/domain/users/service/users.service';
 import { CreateUserDto } from '../dto/user.input-dto';
 
 import { AppContext } from 'src/aop/http/context';
