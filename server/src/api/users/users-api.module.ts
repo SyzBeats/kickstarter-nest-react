@@ -7,8 +7,8 @@ import { UsersController } from './controllers/users.controller';
 import { UsersMediator } from './mediators/users.mediator';
 
 @Module({
-  imports: [UsersDomainModule, CashflowsDomainModule],
-  controllers: [UsersController],
-  providers: [UsersMediator],
+	imports: [UsersDomainModule, CashflowsDomainModule],
+	controllers: [UsersController],
+	providers: [UsersMediator],
 })
 export class UsersApiModule {}

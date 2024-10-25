@@ -9,29 +9,29 @@ import { User } from 'src/domain/users/entities/user';
 
 @Injectable()
 export class UsersMediator {
-  constructor(
-    private usersService: UsersService,
-    private cashflowsService: CashflowsService,
-  ) {}
+	constructor(
+		private usersService: UsersService,
+		private cashflowsService: CashflowsService,
+	) {}
 
-  async create(dto: CreateUserDto, appContext: AppContext) {
-    // Todo: Should not be inferred but use a dedicated input interface
-    return this.usersService.create(dto as User, appContext);
-  }
+	async create(dto: CreateUserDto, appContext: AppContext) {
+		// Todo: Should not be inferred but use a dedicated input interface
+		return this.usersService.create(dto as User, appContext);
+	}
 
-  async getById(id: string, context: AppContext): Promise<User> {
-    return this.usersService.getById(id, context);
-  }
+	async getById(id: string, context: AppContext): Promise<User> {
+		return this.usersService.getById(id, context);
+	}
 
-  async getAll(context: AppContext): Promise<User[]> {
-    return this.usersService.getAll(context);
-  }
+	async getAll(context: AppContext): Promise<User[]> {
+		return this.usersService.getAll(context);
+	}
 
-  async update() {
-    return this.usersService.update();
-  }
+	async update() {
+		return this.usersService.update();
+	}
 
-  async delete() {
-    return this.usersService.delete();
-  }
+	async delete() {
+		return this.usersService.delete();
+	}
 }

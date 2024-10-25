@@ -14,32 +14,32 @@ const { mongoUri, mongoPoolSize } = keys;
  **/
 
 const databaseProviders = [
-  {
-    provide: 'MONGO_DB_CLIENT',
-    useFactory: async (): Promise<Db> => {
-      try {
-        const client = await MongoClient.connect(mongoUri, {
-          minPoolSize: mongoPoolSize,
-        });
+	{
+		provide: 'MONGO_DB_CLIENT',
+		useFactory: async (): Promise<Db> => {
+			try {
+				const client = await MongoClient.connect(mongoUri, {
+					minPoolSize: mongoPoolSize,
+				});
 
-        console.info(
-          `[DB]: 🟢 Successfully connected to mongodb and database "${keys.dbName}"`,
-        );
+				console.info(
+					`[DB]: 🟢 Successfully connected to mongodb and database "${keys.dbName}"`,
+				);
 
-        // [OPTIONAL] If multi tenancy is needed, see comment above and implement accordingly
-        // based on the request context
-        return client.db(keys.dbName);
-      } catch (e) {
-        console.error('Connection failure');
-      }
-    },
-  },
+				// [OPTIONAL] If multi tenancy is needed, see comment above and implement accordingly
+				// based on the request context
+				return client.db(keys.dbName);
+			} catch (e) {
+				console.error('Connection failure');
+			}
+		},
+	},
 ];
 
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [...databaseProviders],
-  exports: [...databaseProviders],
+	imports: [],
+	controllers: [],
+	providers: [...databaseProviders],
+	exports: [...databaseProviders],
 })
 export class MongoDbModule {}

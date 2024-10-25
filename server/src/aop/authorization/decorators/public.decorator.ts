@@ -5,5 +5,5 @@ import { SetMetadata } from '@nestjs/common';
  * @returns {MethodDecorator} decorator
  */
 export function Public(): MethodDecorator {
-  return SetMetadata('isPublic', true);
+	return SetMetadata('isPublic', true);
 }

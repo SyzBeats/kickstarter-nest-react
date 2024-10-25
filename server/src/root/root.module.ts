@@ -11,20 +11,20 @@ import { MongoDbMiddleware } from 'src/aop/db/mongo/mongo-db.middleware';
 import { MongoDbModule } from 'src/aop/db/mongo/mongo-db.module';
 
 @Module({
-  imports: [
-    AopModule,
-    ApiModule,
-    MongoDbModule,
-    PersistenceModule,
-    ConfigModule.forRoot({ isGlobal: true }),
-  ],
-  controllers: [],
-  providers: [],
+	imports: [
+		AopModule,
+		ApiModule,
+		MongoDbModule,
+		PersistenceModule,
+		ConfigModule.forRoot({ isGlobal: true }),
+	],
+	controllers: [],
+	providers: [],
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*');
-    consumer.apply(contextMiddleware).forRoutes('*');
-    consumer.apply(MongoDbMiddleware).forRoutes('*');
-  }
+	configure(consumer: MiddlewareConsumer) {
+		consumer.apply(LoggerMiddleware).forRoutes('*');
+		consumer.apply(contextMiddleware).forRoutes('*');
+		consumer.apply(MongoDbMiddleware).forRoutes('*');
+	}
 }

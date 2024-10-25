@@ -3,9 +3,9 @@ import { UsersService } from './users.service';
 import { PersistenceModule } from 'src/persistence/persistence.module';
 
 @Module({
-  imports: [PersistenceModule],
-  providers: [UsersService],
-  controllers: [],
-  exports: [UsersService],
+	imports: [PersistenceModule],
+	providers: [UsersService],
+	controllers: [],
+	exports: [UsersService],
 })
 export class UsersDomainModule {}

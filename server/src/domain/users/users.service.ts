@@ -7,29 +7,29 @@ import { UserFactory } from './factories/user.factory';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @Inject('UsersRepository') private usersRepository: UsersRepository,
-  ) {}
+	constructor(
+		@Inject('UsersRepository') private usersRepository: UsersRepository,
+	) {}
 
-  async create(input: CreateUserInput, context: AppContext) {
-    const user = UserFactory.create(input);
+	async create(input: CreateUserInput, context: AppContext) {
+		const user = UserFactory.create(input);
 
-    return this.usersRepository.insert(user, context);
-  }
+		return this.usersRepository.insert(user, context);
+	}
 
-  async getById(id: string, context: AppContext): Promise<User> {
-    return this.usersRepository.getById(id, context);
-  }
+	async getById(id: string, context: AppContext): Promise<User> {
+		return this.usersRepository.getById(id, context);
+	}
 
-  async getAll(context: AppContext): Promise<User[]> {
-    return this.usersRepository.getAll(context);
-  }
+	async getAll(context: AppContext): Promise<User[]> {
+		return this.usersRepository.getAll(context);
+	}
 
-  async update() {
-    return 'updated';
-  }
+	async update() {
+		return 'updated';
+	}
 
-  async delete() {
-    return 'deleted';
-  }
+	async delete() {
+		return 'deleted';
+	}
 }

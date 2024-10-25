@@ -7,23 +7,23 @@ import keys from 'src/aop/keys';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
-    super({
-      jwtFromRequest: ExtractJwt.fromExtractors([
-        ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ]),
-      ignoreExpiration: false,
-      secretOrKey: keys.jwtSecret,
-    });
-  }
+	constructor() {
+		super({
+			jwtFromRequest: ExtractJwt.fromExtractors([
+				ExtractJwt.fromAuthHeaderAsBearerToken(),
+			]),
+			ignoreExpiration: false,
+			secretOrKey: keys.jwtSecret,
+		});
+	}
 
-  async validate(payload: any) {
-    // validating payload here
-    if (payload) {
-      return 'Authenticated';
-    }
+	async validate(payload: any) {
+		// validating payload here
+		if (payload) {
+			return 'Authenticated';
+		}
 
-    // return 401 Unauthorized error
-    throw new UnauthorizedException();
-  }
+		// return 401 Unauthorized error
+		throw new UnauthorizedException();
+	}
 }
