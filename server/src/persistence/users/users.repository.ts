@@ -11,9 +11,11 @@ export class UsersRepository implements IUserRepository {
 		// Todo: Should be strict User type
 		const document = UsersMongoDocument.serialize(input);
 
-		const userDocument = await context.db.collection('users').insertOne({
-			...document,
-		});
+		const userDocument = await context.connection.db
+			.collection('users')
+			.insertOne({
+				...document,
+			});
 
 		const deserialized = UsersMongoDocument.appendId(
 			document,
@@ -24,7 +26,7 @@ export class UsersRepository implements IUserRepository {
 	}
 
 	async getAll(context: AppContext): Promise<User[]> {
-		const documents = await context.db
+		const documents = await context.connection.db
 			.collection('users')
 			.find<UsersMongoDocument>({})
 			.toArray();
@@ -33,7 +35,7 @@ export class UsersRepository implements IUserRepository {
 	}
 
 	async getById(id: string, context: AppContext): Promise<User> {
-		const document = await context.db
+		const document = await context.connection.db
 			.collection('users')
 			.findOne<UsersMongoDocument>({ _id: new ObjectId(id) });
 
@@ -45,7 +47,7 @@ export class UsersRepository implements IUserRepository {
 	}
 
 	async getByEmail(email: string, context: AppContext): Promise<User> {
-		const document = await context.db
+		const document = await context.connection.db
 			.collection('users')
 			.findOne<UsersMongoDocument>({ email });
 

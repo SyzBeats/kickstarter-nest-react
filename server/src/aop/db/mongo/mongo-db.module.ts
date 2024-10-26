@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { Db, MongoClient } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import keys from 'src/aop/keys';
 
 const { mongoUri, mongoPoolSize } = keys;
@@ -16,7 +16,7 @@ const { mongoUri, mongoPoolSize } = keys;
 const databaseProviders = [
 	{
 		provide: 'MONGO_DB_CLIENT',
-		useFactory: async (): Promise<Db> => {
+		useFactory: async (): Promise<MongoClient> => {
 			try {
 				const client = await MongoClient.connect(mongoUri, {
 					minPoolSize: mongoPoolSize,
@@ -28,9 +28,10 @@ const databaseProviders = [
 
 				// [OPTIONAL] If multi tenancy is needed, see comment above and implement accordingly
 				// based on the request context
-				return client.db(keys.dbName);
+				return client;
 			} catch (e) {
 				console.error('Connection failure');
+				return null;
 			}
 		},
 	},
