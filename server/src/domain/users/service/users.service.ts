@@ -21,6 +21,10 @@ export class UsersService {
 		return this.usersRepository.getById(id, context);
 	}
 
+	async getByEmail(email: string, context: AppContext): Promise<User> {
+		return this.usersRepository.getByEmail(email, context);
+	}
+
 	async getAll(context: AppContext): Promise<User[]> {
 		return this.usersRepository.getAll(context);
 	}

@@ -43,4 +43,16 @@ export class UsersRepository implements IUserRepository {
 
 		return UsersMongoDocument.deserialize(document);
 	}
+
+	async getByEmail(email: string, context: AppContext): Promise<User> {
+		const document = await context.db
+			.collection('users')
+			.findOne<UsersMongoDocument>({ email });
+
+		if (!document) {
+			throw new NotFoundException('Could not find user');
+		}
+
+		return UsersMongoDocument.deserialize(document);
+	}
 }
