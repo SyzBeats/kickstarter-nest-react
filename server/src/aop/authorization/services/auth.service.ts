@@ -1,14 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+
 import { User } from 'src/domain/users/entities/user';
 import { SignInUserInput } from 'src/domain/users/inputs/signin-user.input';
-
-// Todo: should be in a encryption module
-import * as argon2 from 'argon2';
+import { EncryptionService } from 'src/aop/encryption/services/encryption.service';
 
 @Injectable()
 export class AuthService {
-	constructor(private jwtService: JwtService) {}
+	constructor(
+		private jwtService: JwtService,
+		private encryptionService: EncryptionService,
+	) {}
 
 	async signIn(
 		input: SignInUserInput,
@@ -18,7 +20,10 @@ export class AuthService {
 			throw new UnauthorizedException();
 		}
 
-		const verified = await argon2.verify(user.password, input.password);
+		const verified = await this.encryptionService.verify(
+			user.password,
+			input.password,
+		);
 
 		if (!verified) {
 			throw new UnauthorizedException();
@@ -32,6 +37,6 @@ export class AuthService {
 	}
 
 	async signUp() {
-		return '';
+		throw new UnauthorizedException('Not implemented');
 	}
 }
