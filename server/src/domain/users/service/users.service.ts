@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { AppContext } from 'src/aop/http/context';
 import { UsersRepository } from 'src/persistence/users/users.repository';
 import { User } from '../entities/user';
@@ -12,6 +12,12 @@ export class UsersService {
 	) {}
 
 	async create(input: CreateUserInput, context: AppContext) {
+		const found = await this.getByEmail(input.email, context);
+
+		if (found) {
+			throw new UnauthorizedException();
+		}
+
 		const user = UserFactory.create(input);
 
 		return this.usersRepository.insert(user, context);
