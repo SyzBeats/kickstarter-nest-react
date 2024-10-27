@@ -5,6 +5,7 @@ import { AuthModule } from './authorization/authorization.module';
 
 @Module({
 	imports: [MongoDbModule, AuthModule],
+	controllers: [],
 	providers: [],
 })
 export class AopModule {}

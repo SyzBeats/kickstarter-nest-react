@@ -7,6 +7,12 @@ declare module 'fastify' {
 	}
 }
 
+declare module 'http' {
+	interface IncomingMessage {
+		appContext?: AppContext;
+	}
+}
+
 export const contextMiddleware = (
 	req: FastifyRequest,
 	_: FastifyReply,

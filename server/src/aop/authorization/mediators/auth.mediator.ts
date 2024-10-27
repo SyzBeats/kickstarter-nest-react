@@ -6,12 +6,14 @@ import { UsersService } from 'src/domain/users/service/users.service';
 import { AppContext } from 'src/aop/http/context';
 import { CreateUserInput } from 'src/domain/users/inputs/create-user.input';
 import { SignInUserInput } from 'src/domain/users/inputs/signin-user.input';
+import { EncryptionService } from 'src/aop/encryption/services/encryption.service';
 
 @Injectable()
 export class AuthMediator {
 	constructor(
 		private authService: AuthService,
 		private usersService: UsersService,
+		private encryptionService: EncryptionService,
 	) {}
 
 	async signIn(input: SignInUserInput, context: AppContext) {
@@ -25,7 +27,17 @@ export class AuthMediator {
 	}
 
 	async signUp(input: CreateUserInput, context: AppContext) {
-		const user = await this.usersService.create(input, context);
+		const hashedPassword = await this.encryptionService.hash(
+			input.password,
+		);
+
+		const user = await this.usersService.create(
+			{
+				...input,
+				password: hashedPassword,
+			},
+			context,
+		);
 
 		return this.authService.signIn(input, user);
 	}
