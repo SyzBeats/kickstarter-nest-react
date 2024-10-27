@@ -19,11 +19,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 	async validate(payload: any) {
 		// validating payload here
+		// Todo:
 		if (payload) {
 			return 'Authenticated';
 		}
 
-		// return 401 Unauthorized error
 		throw new UnauthorizedException();
 	}
 }
