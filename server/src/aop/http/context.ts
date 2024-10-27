@@ -5,7 +5,6 @@ import { DbConnection } from '../db/mongo/mongo-db.middleware';
 
 export class AppContext implements FastifyRequestContext {
 	connection: DbConnection;
-	// Todo: should be required
 	client: MongoClient;
 	config: FastifyContextConfig & FastifyRouteConfig;
 }
