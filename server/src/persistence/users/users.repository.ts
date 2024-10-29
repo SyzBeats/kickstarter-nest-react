@@ -11,8 +11,6 @@ export class UsersRepository implements IUserRepository {
 		// Todo: Should be strict User type
 		const document = UsersMongoDocument.serialize(input);
 
-		console.log(document);
-
 		const userDocument = await context.connection.db
 			.collection('users')
 			.insertOne({
@@ -23,8 +21,6 @@ export class UsersRepository implements IUserRepository {
 			document,
 			userDocument.insertedId,
 		);
-
-		console.log(deserialized);
 
 		return deserialized;
 	}
