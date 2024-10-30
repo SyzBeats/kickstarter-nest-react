@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 
 import { CashflowsService } from 'src/domain/cashflows/cashflows.service';
 import { UsersService } from 'src/domain/users/service/users.service';
-import { CreateUserDto } from '../dto/user.input-dto';
 
 import { AppContext } from 'src/aop/http/context';
 import { User } from 'src/domain/users/entities/user';
+import { CreateUserInput } from 'src/domain/users/inputs/create-user.input';
 
 @Injectable()
 export class UsersMediator {
@@ -14,9 +14,8 @@ export class UsersMediator {
 		private cashflowsService: CashflowsService,
 	) {}
 
-	async create(dto: CreateUserDto, appContext: AppContext) {
-		// Todo: Should not be inferred but use a dedicated input interface
-		return this.usersService.create(dto as User, appContext);
+	async create(dto: CreateUserInput, appContext: AppContext) {
+		return this.usersService.create(dto, appContext);
 	}
 
 	async getById(id: string, context: AppContext): Promise<User> {
