@@ -11,4 +11,4 @@ import { UsersMediator } from './mediators/users.mediator';
 	controllers: [UsersController],
 	providers: [UsersMediator],
 })
-export class UsersApiModule {}
+export class UsersRestApiModule {}

@@ -9,8 +9,8 @@ import {
 import { FastifyRequest } from 'fastify';
 import { Public } from '../decorators/public.decorator';
 import { AuthMediator } from '../mediators/auth.mediator';
-import { CreateUserDto } from 'src/api/users/dto/user.input-dto';
-import { UserSignInDto } from 'src/api/users/dto/user-sigin.dto';
+import { CreateUserDto } from 'src/api/rest/users/dto/user.input-dto';
+import { UserSignInDto } from 'src/api/rest/users/dto/user-sigin.dto';
 
 @Controller('auth')
 export class AuthController {

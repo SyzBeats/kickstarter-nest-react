@@ -2,13 +2,13 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { PersistenceModule } from 'src/persistence/persistence.module';
-import { ApiModule } from 'src/api/api.module';
 import { AopModule } from 'src/aop/aop.module';
 
 import { LoggerMiddleware } from '../aop/logger/logger.middleware';
 import { contextMiddleware } from 'src/aop/http/context.middleware';
 import { MongoDbMiddleware } from 'src/aop/db/mongo/mongo-db.middleware';
 import { MongoDbModule } from 'src/aop/db/mongo/mongo-db.module';
+import { ApiModule } from 'src/api/api.module';
 
 @Module({
 	imports: [

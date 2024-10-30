@@ -1,4 +1,4 @@
-import { CreateUserDto } from 'src/api/users/dto/user.input-dto';
+import { CreateUserDto } from 'src/api/rest/users/dto/user.input-dto';
 import { AppContext } from 'src/aop/http/context';
 import { User } from '../entities/user';
 

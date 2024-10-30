@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UsersApiModule } from './users/users-api.module';
-import { CashflowsApiModule } from './cashflows/cashflows-api.module';
+import { RestApiModule } from './rest/rest-api.module';
 
 @Module({
-	imports: [UsersApiModule, CashflowsApiModule],
+	imports: [RestApiModule],
 	controllers: [],
 	providers: [],
 })

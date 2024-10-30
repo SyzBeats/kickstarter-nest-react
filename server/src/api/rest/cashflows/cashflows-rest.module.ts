@@ -6,4 +6,4 @@ import { CashflowsController } from './controllers/cashflows.controller';
 	controllers: [CashflowsController],
 	providers: [],
 })
-export class CashflowsApiModule {}
+export class CashflowsRestApiModule {}
