@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 
-import {CashflowsService} from 'src/domain/cashflows/cashflows.service';
+import {BudgetsService} from 'src/domain/budgets/budgets.service';
 import {UsersService} from 'src/domain/users/service/users.service';
 
 import {AppContext} from 'src/aop/http/context';
@@ -11,7 +11,7 @@ import {CreateUserInput} from 'src/domain/users/inputs/create-user.input';
 export class UsersMediator {
     constructor(
         private usersService: UsersService,
-        private cashflowsService: CashflowsService,
+        private budgetsService: BudgetsService,
     ) {
     }
 
