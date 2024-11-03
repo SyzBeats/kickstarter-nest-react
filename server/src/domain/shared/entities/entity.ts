@@ -1,9 +1,9 @@
-export abstract class Entity {
+export abstract class EntityBase {
 	#_id: string | null;
 	#createdAt: Date;
 	#updatedAt: Date;
 
-	constructor(_id: string | null, createdAt: Date, updatedAt: Date) {
+	protected constructor(_id: string | null, createdAt: Date, updatedAt: Date) {
 		this.#_id = _id;
 		this.#createdAt = createdAt;
 		this.#updatedAt = updatedAt;

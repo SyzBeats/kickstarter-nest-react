@@ -1,6 +1,6 @@
-import { Entity } from 'src/domain/shared/entities/entity';
+import { EntityBase } from 'src/domain/shared/entities/entity';
 
-export class User extends Entity {
+export class User extends EntityBase {
 	#firstName: string;
 	#lastName: string;
 	#email: string;

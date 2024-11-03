@@ -30,7 +30,6 @@ export class UsersMongoDocument extends MongoDocument {
 		};
 	}
 
-	// Todo: specify
 	static deserialize(userDocument: UsersMongoDocument): User {
 		const {
 			_id,

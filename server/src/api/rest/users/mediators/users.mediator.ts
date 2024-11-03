@@ -17,7 +17,6 @@ export class UsersMediator {
 
     async create(dto: CreateUserInput, context: AppContext) {
         return context.connection.withTransaction(async () => {
-			console.log("...")
             return this.usersService.create(dto, context);
         })
     }
