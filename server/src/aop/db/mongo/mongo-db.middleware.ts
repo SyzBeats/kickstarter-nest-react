@@ -45,19 +45,17 @@ class DbContext implements DbConnection {
 		}
 
 		if (publicError) {
+			// Exception that was raised within operations,
+			// so likely a mediator. service or repository
 			throw publicError;
 		}
 
-		throw new InternalServerErrorException(
-			'Unexpected error in transaction',
-		);
+		throw new InternalServerErrorException('Unexpected error in transaction');
 	}
 
 	private startTransaction(): void {
 		if (!this.session) {
-			throw new InternalServerErrorException(
-				'Session has not been initialized.',
-			);
+			throw new InternalServerErrorException('Session has not been initialized.');
 		}
 
 		this.session.startTransaction();
@@ -66,12 +64,12 @@ class DbContext implements DbConnection {
 	private async commitTransaction(): Promise<void> {
 		try {
 			if (!this.session) {
-				throw new Error('No transaction is active.');
+				return;
 			}
 
 			await this.session.commitTransaction();
 		} catch (error) {
-			throw new Error('Transaction commit failed.');
+			throw new InternalServerErrorException('Transaction commit failed.');
 		}
 	}
 

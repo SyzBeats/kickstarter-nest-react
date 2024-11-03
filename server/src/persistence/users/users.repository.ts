@@ -1,14 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { IUserRepository } from 'src/domain/users/interfaces/user.repository.interface';
-import { UsersMongoDocument } from './users.entity';
-import { AppContext } from 'src/aop/http/context';
-import { ObjectId } from 'mongodb';
-import { User } from 'src/domain/users/entities/user';
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {IUserRepository} from 'src/domain/users/interfaces/user.repository.interface';
+import {UsersMongoDocument} from './users.entity';
+import {AppContext} from 'src/aop/http/context';
+import {ObjectId} from 'mongodb';
+import {User} from 'src/domain/users/entities/user';
 
 @Injectable()
 export class UsersRepository implements IUserRepository {
 	async insert(input: User, context: AppContext): Promise<User> {
-		// Todo: Should be strict User type
 		const document = UsersMongoDocument.serialize(input);
 
 		const userDocument = await context.connection.db
@@ -17,12 +16,10 @@ export class UsersRepository implements IUserRepository {
 				...document,
 			});
 
-		const deserialized = UsersMongoDocument.appendId(
+		return UsersMongoDocument.appendId(
 			document,
 			userDocument.insertedId,
 		);
-
-		return deserialized;
 	}
 
 	async getAll(context: AppContext): Promise<User[]> {
@@ -40,7 +37,7 @@ export class UsersRepository implements IUserRepository {
 			.findOne<UsersMongoDocument>({ _id: new ObjectId(id) });
 
 		if (!document) {
-			throw new NotFoundException('Could not find user');
+			return null;
 		}
 
 		return UsersMongoDocument.deserialize(document);
@@ -52,7 +49,7 @@ export class UsersRepository implements IUserRepository {
 			.findOne<UsersMongoDocument>({ email });
 
 		if (!document) {
-			throw new NotFoundException('Could not find user');
+			return null;
 		}
 
 		return UsersMongoDocument.deserialize(document);

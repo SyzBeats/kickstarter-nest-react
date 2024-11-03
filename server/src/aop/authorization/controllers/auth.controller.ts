@@ -19,15 +19,20 @@ export class AuthController {
 	@HttpCode(HttpStatus.OK)
 	@Public()
 	@Post('signin')
-	// Todo: implement the DTO
-	signIn(@Body() signInDto: UserSignInDto, @Req() request: FastifyRequest) {
-		return this.authMediator.signIn(signInDto, request.appContext);
+	signIn(
+		@Body() signInDto: UserSignInDto,
+		@Req() request: FastifyRequest['raw'],
+	) {
+		return this.authMediator.signIn(signInDto, request['raw'].appContext);
 	}
 
 	@HttpCode(HttpStatus.OK)
 	@Public()
 	@Post('signup')
-	signUp(@Body() signUpDto: CreateUserDto, @Req() request: FastifyRequest) {
-		return this.authMediator.signUp(signUpDto, request.raw.appContext);
+	signUp(
+		@Body() signUpDto: CreateUserDto,
+		@Req() request: FastifyRequest['raw'],
+	) {
+		return this.authMediator.signUp(signUpDto, request['raw'].appContext);
 	}
 }

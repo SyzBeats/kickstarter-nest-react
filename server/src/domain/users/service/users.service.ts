@@ -1,4 +1,4 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import {ConflictException, Inject, Injectable, UnauthorizedException} from '@nestjs/common';
 import { AppContext } from 'src/aop/http/context';
 import { UsersRepository } from 'src/persistence/users/users.repository';
 import { User } from '../entities/user';
@@ -15,7 +15,7 @@ export class UsersService {
 		const found = await this.getByEmail(input.email, context);
 
 		if (found) {
-			throw new UnauthorizedException();
+			throw new ConflictException();
 		}
 
 		const user = UserFactory.create(input);

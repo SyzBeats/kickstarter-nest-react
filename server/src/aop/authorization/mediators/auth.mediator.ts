@@ -31,6 +31,8 @@ export class AuthMediator {
 			input.password,
 		);
 
+		console.log(hashedPassword)
+
 		const user = await this.usersService.create(
 			{
 				...input,
