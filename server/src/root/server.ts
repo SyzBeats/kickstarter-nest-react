@@ -3,12 +3,12 @@ import {
 	FastifyAdapter,
 	NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-
-import { AppModule } from './root.module';
-import bootstrapSwagger from '../aop/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import keys from 'src/aop/keys';
 import { AuthenticationGuard } from 'src/aop/authorization/guards/authentication.guard';
+
+import bootstrapSwagger from '../aop/swagger';
+import { AppModule } from './root.module';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestFastifyApplication>(

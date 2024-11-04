@@ -9,9 +9,7 @@ import keys from 'src/aop/keys';
 export class JwtStrategy extends PassportStrategy(Strategy) {
 	constructor() {
 		super({
-			jwtFromRequest: ExtractJwt.fromExtractors([
-				ExtractJwt.fromAuthHeaderAsBearerToken(),
-			]),
+			jwtFromRequest: ExtractJwt.fromExtractors([ExtractJwt.fromAuthHeaderAsBearerToken()]),
 			ignoreExpiration: false,
 			secretOrKey: keys.jwtSecret,
 		});

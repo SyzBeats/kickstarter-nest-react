@@ -22,9 +22,7 @@ const databaseProviders = [
 					minPoolSize: mongoPoolSize,
 				});
 
-				console.info(
-					`[DB]: 🟢 Successfully connected to mongodb and database "${keys.dbName}"`,
-				);
+				console.info(`[DB]: 🟢 Successfully connected to mongodb and database "${keys.dbName}"`);
 
 				// [OPTIONAL] If multi tenancy is needed, see comment above and implement accordingly
 				// based on the request context

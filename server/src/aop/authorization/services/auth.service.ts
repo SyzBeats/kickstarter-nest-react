@@ -1,6 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-
 import { User } from 'src/domain/users/entities/user';
 import { SignInUserInput } from 'src/domain/users/inputs/signin-user.input';
 import { EncryptionService } from 'src/aop/encryption/services/encryption.service';
@@ -12,18 +11,12 @@ export class AuthService {
 		private encryptionService: EncryptionService,
 	) {}
 
-	async signIn(
-		input: SignInUserInput,
-		user: User,
-	): Promise<{ access_token: string }> {
+	async signIn(input: SignInUserInput, user: User): Promise<{ access_token: string }> {
 		if (!user) {
 			throw new UnauthorizedException();
 		}
 
-		const verified = await this.encryptionService.verify(
-			user.password,
-			input.password,
-		);
+		const verified = await this.encryptionService.verify(user.password, input.password);
 
 		if (!verified) {
 			throw new UnauthorizedException();

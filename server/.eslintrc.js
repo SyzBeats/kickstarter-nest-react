@@ -5,7 +5,7 @@ module.exports = {
 		tsconfigRootDir: __dirname,
 		sourceType: 'module',
 	},
-	plugins: ['@typescript-eslint/eslint-plugin'],
+	plugins: ['@typescript-eslint/eslint-plugin', 'import'],
 	extends: [
 		'plugin:@typescript-eslint/recommended',
 		'plugin:prettier/recommended',
@@ -21,7 +21,9 @@ module.exports = {
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
-		'no-unused-vars': 'error',
+		'object-curly-spacing': ['error', 'always'],
+		'no-unused-vars': 'off',
+		'@typescript-eslint/no-unused-vars': 'error',
 		// Enforce tabs with a width of 4
 		indent: [
 			'error',
@@ -44,6 +46,24 @@ module.exports = {
 				useTabs: true,
 				tabWidth: 4,
 			},
+		],
+		"import/order": [
+			"error",
+			{
+				"groups": [
+					[
+						"builtin",
+						"external",
+						"internal"
+					],
+					[
+						"parent",
+						"sibling",
+						"index"
+					]
+				],
+				"newlines-between": "always"
+			}
 		],
 	},
 };

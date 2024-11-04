@@ -1,12 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-
-import { AuthService } from '../services/auth.service';
 import { UsersService } from 'src/domain/users/service/users.service';
-
 import { AppContext } from 'src/aop/http/context';
 import { CreateUserInput } from 'src/domain/users/inputs/create-user.input';
 import { SignInUserInput } from 'src/domain/users/inputs/signin-user.input';
 import { EncryptionService } from 'src/aop/encryption/services/encryption.service';
+
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthMediator {
@@ -27,11 +26,9 @@ export class AuthMediator {
 	}
 
 	async signUp(input: CreateUserInput, context: AppContext) {
-		const hashedPassword = await this.encryptionService.hash(
-			input.password,
-		);
+		const hashedPassword = await this.encryptionService.hash(input.password);
 
-		console.log(hashedPassword)
+		console.log(hashedPassword);
 
 		const user = await this.usersService.create(
 			{

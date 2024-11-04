@@ -1,10 +1,4 @@
-import {
-	ForbiddenException,
-	Inject,
-	Injectable,
-	InternalServerErrorException,
-	NestMiddleware,
-} from '@nestjs/common';
+import { ForbiddenException, Inject, Injectable, InternalServerErrorException, NestMiddleware } from '@nestjs/common';
 import { ClientSession, Db, MongoClient } from 'mongodb';
 import { FastifyRequest, FastifyReply } from 'fastify';
 import keys from 'src/aop/keys';
@@ -94,10 +88,7 @@ export class MongoDbMiddleware implements NestMiddleware {
 		}
 
 		req.appContext.client = this.client;
-		req.appContext.connection = new DbContext(
-			this.client,
-			this.client.db(keys.dbName),
-		);
+		req.appContext.connection = new DbContext(this.client, this.client.db(keys.dbName));
 
 		next();
 	}

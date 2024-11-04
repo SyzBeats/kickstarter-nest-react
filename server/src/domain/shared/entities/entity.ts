@@ -3,7 +3,11 @@ export abstract class EntityBase {
 	#createdAt: Date;
 	#updatedAt: Date;
 
-	protected constructor(_id: string | null, createdAt: Date, updatedAt: Date) {
+	protected constructor(
+		_id: string | null,
+		createdAt: Date,
+		updatedAt: Date,
+	) {
 		this.#_id = _id;
 		this.#createdAt = createdAt;
 		this.#updatedAt = updatedAt;

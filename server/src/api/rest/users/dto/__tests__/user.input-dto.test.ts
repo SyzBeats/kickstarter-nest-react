@@ -1,149 +1,148 @@
-import {beforeAll, describe, expect} from "vitest";
-import {UserInputDtoMock} from "../__mocks__/user.input-dto.mock";
-import {validateSync} from "class-validator";
+import { describe, expect } from 'vitest';
+import { validateSync } from 'class-validator';
 
-describe("UserInputDTO", () => {
-    describe("Validation tests", () => {
-        describe("firstName", ()=>{
-            it("Should report if firstName is empty", () => {
-                const mockValues = {
-                    firstName: "",
-                }
+import { UserInputDtoMock } from '../__mocks__/user.input-dto.mock';
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+describe('UserInputDTO', () => {
+	describe('Validation tests', () => {
+		describe('firstName', () => {
+			it('Should report if firstName is empty', () => {
+				const mockValues = {
+					firstName: '',
+				};
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-            it("Should report if firstName is null", () => {
-                const mockValues = {
-                    firstName: null as unknown as string,
-                }
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+			it('Should report if firstName is null', () => {
+				const mockValues = {
+					firstName: null as unknown as string,
+				};
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-            it("Should report if firstName is not a string", () => {
-                const mockValues = {
-                    firstName: 0 as unknown as string,
-                }
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+			it('Should report if firstName is not a string', () => {
+				const mockValues = {
+					firstName: 0 as unknown as string,
+				};
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
-        })
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-        describe("lastName", ()=>{
-            it("Should report if lastName is empty", () => {
-                const mockValues = {
-                    lastName: "",
-                }
+				expect(errors.length).toBeGreaterThan(0);
+			});
+		});
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+		describe('lastName', () => {
+			it('Should report if lastName is empty', () => {
+				const mockValues = {
+					lastName: '',
+				};
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-            it("Should report if lastName is null", () => {
-                const mockValues = {
-                    lastName: null as unknown as string,
-                }
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+			it('Should report if lastName is null', () => {
+				const mockValues = {
+					lastName: null as unknown as string,
+				};
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-            it("Should report if lastName is not a string", () => {
-                const mockValues = {
-                    lastName: 0 as unknown as string,
-                }
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+			it('Should report if lastName is not a string', () => {
+				const mockValues = {
+					lastName: 0 as unknown as string,
+				};
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
-        })
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
+				expect(errors.length).toBeGreaterThan(0);
+			});
+		});
 
-        describe("email", ()=>{
-            it("Should report if email is empty", () => {
-                const mockValues = {
-                    email: "",
-                }
+		describe('email', () => {
+			it('Should report if email is empty', () => {
+				const mockValues = {
+					email: '',
+				};
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-            it("Should report if email is null", () => {
-                const mockValues = {
-                    email: null as unknown as string,
-                }
+			it('Should report if email is null', () => {
+				const mockValues = {
+					email: null as unknown as string,
+				};
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-            it("Should report if email is not a string", () => {
-                const mockValues = {
-                    email: 0 as unknown as string,
-                }
+			it('Should report if email is not a string', () => {
+				const mockValues = {
+					email: 0 as unknown as string,
+				};
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
-        })
+				expect(errors.length).toBeGreaterThan(0);
+			});
+		});
 
+		describe('password', () => {
+			it('Should report if password is empty', () => {
+				const mockValues = {
+					password: '',
+				};
 
-        describe("password", ()=>{
-            it("Should report if password is empty", () => {
-                const mockValues = {
-                    password: ""
-                }
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+			it('Should report if password is null', () => {
+				const mockValues = {
+					password: null as unknown as string,
+				};
 
-            it("Should report if password is null", () => {
-                const mockValues = {
-                    password: null as unknown as string,
-                }
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
+				expect(errors.length).toBeGreaterThan(0);
+			});
 
-                expect(errors.length).toBeGreaterThan(0)
-            })
+			it('Should report if password is not a string', () => {
+				const mockValues = {
+					password: 0 as unknown as string,
+				};
 
-            it("Should report if password is not a string", () => {
-                const mockValues = {
-                    password: 0 as unknown as string,
-                }
+				const instance = UserInputDtoMock.create(mockValues);
+				const errors = validateSync(instance);
 
-                const instance = UserInputDtoMock.create(mockValues);
-                const errors = validateSync(instance);
-
-                expect(errors.length).toBeGreaterThan(0)
-            })
-        })
-    })
-})
+				expect(errors.length).toBeGreaterThan(0);
+			});
+		});
+	});
+});

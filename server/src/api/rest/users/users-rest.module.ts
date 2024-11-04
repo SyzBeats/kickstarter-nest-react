@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-
 import { UsersDomainModule } from 'src/domain/users/users.module';
 import { BudgetsDomainModule } from 'src/domain/budgets/budgets.module';
 

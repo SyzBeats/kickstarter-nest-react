@@ -1,9 +1,10 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
-import {IUserRepository} from 'src/domain/users/interfaces/user.repository.interface';
-import {UsersMongoDocument} from './users.entity';
-import {AppContext} from 'src/aop/http/context';
-import {ObjectId} from 'mongodb';
-import {User} from 'src/domain/users/entities/user';
+import { Injectable } from '@nestjs/common';
+import { IUserRepository } from 'src/domain/users/interfaces/user.repository.interface';
+import { AppContext } from 'src/aop/http/context';
+import { ObjectId } from 'mongodb';
+import { User } from 'src/domain/users/entities/user';
+
+import { UsersMongoDocument } from './users.entity';
 
 @Injectable()
 export class UsersRepository implements IUserRepository {
@@ -16,10 +17,7 @@ export class UsersRepository implements IUserRepository {
 				...document,
 			});
 
-		return UsersMongoDocument.appendId(
-			document,
-			userDocument.insertedId,
-		);
+		return UsersMongoDocument.appendId(document, userDocument.insertedId);
 	}
 
 	async getAll(context: AppContext): Promise<User[]> {

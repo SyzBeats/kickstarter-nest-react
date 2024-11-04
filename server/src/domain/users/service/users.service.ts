@@ -1,15 +1,14 @@
-import {ConflictException, Inject, Injectable, UnauthorizedException} from '@nestjs/common';
+import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import { AppContext } from 'src/aop/http/context';
 import { UsersRepository } from 'src/persistence/users/users.repository';
+
 import { User } from '../entities/user';
 import { CreateUserInput } from '../inputs/create-user.input';
 import { UserFactory } from '../factories/user.factory';
 
 @Injectable()
 export class UsersService {
-	constructor(
-		@Inject('UsersRepository') private usersRepository: UsersRepository,
-	) {}
+	constructor(@Inject('UsersRepository') private usersRepository: UsersRepository) {}
 
 	async create(input: CreateUserInput, context: AppContext) {
 		const found = await this.getByEmail(input.email, context);
