@@ -9,7 +9,7 @@ import {
 import { FastifyRequest } from 'fastify';
 import { Public } from '../decorators/public.decorator';
 import { AuthMediator } from '../mediators/auth.mediator';
-import { CreateUserDto } from 'src/api/rest/users/dto/user.input-dto';
+import { CreateUserInputDto } from 'src/api/rest/users/dto/user.input-dto';
 import { UserSignInDto } from 'src/api/rest/users/dto/user-signin.dto';
 
 @Controller('auth')
@@ -30,7 +30,7 @@ export class AuthController {
 	@Public()
 	@Post('signup')
 	signUp(
-		@Body() signUpDto: CreateUserDto,
+		@Body() signUpDto: CreateUserInputDto,
 		@Req() request: FastifyRequest['raw'],
 	) {
 		return this.authMediator.signUp(signUpDto, request['raw'].appContext);

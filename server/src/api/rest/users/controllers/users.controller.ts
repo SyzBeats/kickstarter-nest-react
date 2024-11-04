@@ -12,7 +12,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { FastifyRequest } from 'fastify';
 
 import { UsersMediator } from '../mediators/users.mediator';
-import { CreateUserDto } from '../dto/user.input-dto';
+import { CreateUserInputDto } from '../dto/user.input-dto';
 import { User } from 'src/domain/users/entities/user';
 
 @Controller('users')
@@ -21,7 +21,7 @@ export class UsersController {
 	constructor(private usersMediator: UsersMediator) {}
 
 	@Post()
-	async create(@Req() request: FastifyRequest, @Body() dto: CreateUserDto) {
+	async create(@Req() request: FastifyRequest, @Body() dto: CreateUserInputDto) {
 		return this.usersMediator.create(dto, request.appContext);
 	}
 

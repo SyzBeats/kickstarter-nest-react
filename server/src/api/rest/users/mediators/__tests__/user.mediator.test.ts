@@ -15,6 +15,7 @@ describe('UsersMediator', () => {
         usersService = {
             create: vi.fn(),
             getById: vi.fn(),
+            getAll: vi.fn(),
         } as unknown as UsersService;
 
 
@@ -61,6 +62,13 @@ describe('UsersMediator', () => {
 
             await mediator.getById(id, context)
             expect(usersService.getById).toHaveBeenCalledTimes(1)
+        })
+    })
+
+    describe("getAll", () => {
+        it("Should call usersService.getAll", async () => {
+            await mediator.getAll(context)
+            expect(usersService.getAll).toHaveBeenCalledTimes(1)
         })
     })
 });
