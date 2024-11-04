@@ -9,38 +9,57 @@ import { UsersMongoDocument } from './users.entity';
 @Injectable()
 export class UsersRepository implements IUserRepository {
 	async insert(input: User, context: AppContext): Promise<User> {
-		const document = UsersMongoDocument.serialize(input);
+		try {
+			const document = UsersMongoDocument.serialize(input);
 
-		const userDocument = await context.connection.db.collection('users').insertOne({
-			...document,
-		});
+			const userDocument = await context.connection.db.collection('users').insertOne({
+				...document,
+			});
 
-		return UsersMongoDocument.appendId(document, userDocument.insertedId);
+			return UsersMongoDocument.appendId(document, userDocument.insertedId);
+
+		} catch (error) {
+			return null;
+		}
 	}
 
 	async getAll(context: AppContext): Promise<User[]> {
-		const documents = await context.connection.db.collection('users').find<UsersMongoDocument>({}).toArray();
+		try {
+			const documents = await context.connection.db.collection('users').find<UsersMongoDocument>({}).toArray();
 
-		return documents.map(UsersMongoDocument.deserialize);
+			return documents.map(UsersMongoDocument.deserialize);
+
+		} catch(error) {
+			return [];
+		}
 	}
 
 	async getById(id: string, context: AppContext): Promise<User> {
-		const document = await context.connection.db.collection('users').findOne<UsersMongoDocument>({ _id: new ObjectId(id) });
+		try {
+			const document = await context.connection.db.collection('users').findOne<UsersMongoDocument>({ _id: new ObjectId(id) });
 
-		if (!document) {
+			if (!document) {
+				return null;
+			}
+
+			return UsersMongoDocument.deserialize(document);
+
+		} catch (error) {
 			return null;
 		}
-
-		return UsersMongoDocument.deserialize(document);
 	}
 
 	async getByEmail(email: string, context: AppContext): Promise<User> {
-		const document = await context.connection.db.collection('users').findOne<UsersMongoDocument>({ email });
+		try {
+			const document = await context.connection.db.collection('users').findOne<UsersMongoDocument>({ email });
 
-		if (!document) {
+			if (!document) {
+				return null;
+			}
+
+			return UsersMongoDocument.deserialize(document);
+		} catch(error) {
 			return null;
 		}
-
-		return UsersMongoDocument.deserialize(document);
 	}
 }

@@ -15,37 +15,37 @@ describe('UsersController', () => {
 	});
 
 	describe('create', () => {
-		test('Rejects with 403 if no token header present', async () => {
+		test('Rejects with 401 if no token header present', async () => {
 			const response = await supertest.post('/users');
-			expect(response.status).toBe(403);
+			expect(response.status).toBe(401);
 		});
 	});
 
 	describe('getAll', () => {
-		test('Rejects with 403 if no token header present', async () => {
+		test('Rejects with 401 if no token header present', async () => {
 			const response = await supertest.get('/users');
-			expect(response.status).toBe(403);
+			expect(response.status).toBe(401);
 		});
 	});
 
 	describe('get /:id', () => {
-		test('Rejects with 403 if no token header present', async () => {
+		test('Rejects with 401 if no token header present', async () => {
 			const response = await supertest.get('/users/:123456789');
-			expect(response.status).toBe(403);
+			expect(response.status).toBe(401);
 		});
 	});
 
 	describe('update', () => {
-		test('Rejects with 403 if no token header present', async () => {
+		test('Rejects with 401 if no token header present', async () => {
 			const response = await supertest.put('/users');
-			expect(response.status).toBe(403);
+			expect(response.status).toBe(401);
 		});
 	});
 
 	describe('delete', () => {
-		test('Rejects with 403 if no token header present', async () => {
+		test('Rejects with 401 if no token header present', async () => {
 			const response = await supertest.delete('/users/123456789');
-			expect(response.status).toBe(403);
+			expect(response.status).toBe(401);
 		});
 	});
 });

@@ -12,18 +12,19 @@ export class UsersController {
 	constructor(private usersMediator: UsersMediator) {}
 
 	@Post()
-	async create(@Req() request: FastifyRequest, @Body() dto: CreateUserInputDto) {
-		return this.usersMediator.create(dto, request.appContext);
+	async create(@Req() request: FastifyRequest['raw'], @Body() dto: CreateUserInputDto) {
+		return this.usersMediator.create(dto, request['raw'].appContext);
 	}
 
 	@Get()
-	async getAll(@Req() request: FastifyRequest): Promise<User[]> {
-		return this.usersMediator.getAll(request.appContext);
+	async getAll(@Req() request: FastifyRequest['raw']): Promise<User[]> {
+		return this.usersMediator.getAll(request['raw'].appContext);
 	}
 
 	@Get('/:id')
-	async getById(@Param('id') id: string, @Req() request: FastifyRequest): Promise<User> {
-		return this.usersMediator.getById(id, request.appContext);
+	async getById(@Param('id') id: string, @Req() request: FastifyRequest['raw']): Promise<User> {
+		console.log("TEST")
+		return this.usersMediator.getById(id, request['raw'].appContext);
 	}
 
 	@Put()

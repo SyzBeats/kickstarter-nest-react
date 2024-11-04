@@ -7,8 +7,7 @@ module.exports = {
 	},
 	plugins: ['@typescript-eslint/eslint-plugin', 'import'],
 	extends: [
-		'plugin:@typescript-eslint/recommended',
-		'plugin:prettier/recommended',
+		'plugin:@typescript-eslint/recommended'
 	],
 	root: true,
 	env: {
@@ -39,14 +38,6 @@ module.exports = {
 			},
 		],
 		'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
-		// Prettier integration to enforce tab width of 4
-		'prettier/prettier': [
-			'error',
-			{
-				useTabs: true,
-				tabWidth: 4,
-			},
-		],
 		"import/order": [
 			"error",
 			{

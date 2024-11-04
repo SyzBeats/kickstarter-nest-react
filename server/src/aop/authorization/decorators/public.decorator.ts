@@ -1,9 +1,5 @@
+
 import { SetMetadata } from '@nestjs/common';
 
-/**
- * Custom decorator to mark public API endpoints
- * @returns {MethodDecorator} decorator
- */
-export function Public(): MethodDecorator {
-	return SetMetadata('isPublic', true);
-}
+export const IS_PUBLIC = 'isPublic';
+export const Public = () => SetMetadata(IS_PUBLIC, true);

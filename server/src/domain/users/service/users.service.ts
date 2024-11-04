@@ -1,4 +1,4 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { AppContext } from 'src/aop/http/context';
 import { UsersRepository } from 'src/persistence/users/users.repository';
 
@@ -23,7 +23,13 @@ export class UsersService {
 	}
 
 	async getById(id: string, context: AppContext): Promise<User> {
-		return this.usersRepository.getById(id, context);
+		const user = await this.usersRepository.getById(id, context);
+
+		if(!user) {
+			throw new NotFoundException();
+		}
+
+		return user;
 	}
 
 	async getByEmail(email: string, context: AppContext): Promise<User> {
