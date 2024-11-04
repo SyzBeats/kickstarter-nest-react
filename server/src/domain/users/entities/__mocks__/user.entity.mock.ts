@@ -12,14 +12,6 @@ export class UserEntityMock {
 			password = '123456789',
 		} = overwriteValues;
 
-		return new User(
-			_id,
-			createdAt,
-			updatedAt,
-			firstName,
-			lastName,
-			email,
-			password,
-		);
+		return new User(_id, createdAt, updatedAt, firstName, lastName, email, password);
 	}
 }

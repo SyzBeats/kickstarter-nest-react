@@ -10,13 +10,7 @@ import { ApiModule } from 'src/api/api.module';
 import { LoggerMiddleware } from '../aop/logger/logger.middleware';
 
 @Module({
-	imports: [
-		AopModule,
-		ApiModule,
-		MongoDbModule,
-		PersistenceModule,
-		ConfigModule.forRoot({ isGlobal: true }),
-	],
+	imports: [AopModule, ApiModule, MongoDbModule, PersistenceModule, ConfigModule.forRoot({ isGlobal: true })],
 	controllers: [],
 	providers: [],
 })

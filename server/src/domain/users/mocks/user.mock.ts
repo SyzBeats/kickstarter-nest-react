@@ -12,14 +12,6 @@ export class UserMock {
 			password = '123456798',
 		} = overwriteValues;
 
-		return new User(
-			_id,
-			createdAt,
-			updatedAt,
-			firstName,
-			lastName,
-			email,
-			password,
-		);
+		return new User(_id, createdAt, updatedAt, firstName, lastName, email, password);
 	}
 }

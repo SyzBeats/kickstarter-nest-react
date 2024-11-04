@@ -11,28 +11,21 @@ export class UsersRepository implements IUserRepository {
 	async insert(input: User, context: AppContext): Promise<User> {
 		const document = UsersMongoDocument.serialize(input);
 
-		const userDocument = await context.connection.db
-			.collection('users')
-			.insertOne({
-				...document,
-			});
+		const userDocument = await context.connection.db.collection('users').insertOne({
+			...document,
+		});
 
 		return UsersMongoDocument.appendId(document, userDocument.insertedId);
 	}
 
 	async getAll(context: AppContext): Promise<User[]> {
-		const documents = await context.connection.db
-			.collection('users')
-			.find<UsersMongoDocument>({})
-			.toArray();
+		const documents = await context.connection.db.collection('users').find<UsersMongoDocument>({}).toArray();
 
 		return documents.map(UsersMongoDocument.deserialize);
 	}
 
 	async getById(id: string, context: AppContext): Promise<User> {
-		const document = await context.connection.db
-			.collection('users')
-			.findOne<UsersMongoDocument>({ _id: new ObjectId(id) });
+		const document = await context.connection.db.collection('users').findOne<UsersMongoDocument>({ _id: new ObjectId(id) });
 
 		if (!document) {
 			return null;
@@ -42,9 +35,7 @@ export class UsersRepository implements IUserRepository {
 	}
 
 	async getByEmail(email: string, context: AppContext): Promise<User> {
-		const document = await context.connection.db
-			.collection('users')
-			.findOne<UsersMongoDocument>({ email });
+		const document = await context.connection.db.collection('users').findOne<UsersMongoDocument>({ email });
 
 		if (!document) {
 			return null;

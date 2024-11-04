@@ -1,6 +1,6 @@
 import request from 'supertest';
 import TestAgent from 'supertest/lib/agent';
-import { expect, describe, it, beforeAll } from 'vitest';
+import { expect, describe, beforeAll } from 'vitest';
 
 import keys from '../../../../../aop/keys';
 

@@ -9,15 +9,7 @@ export class UsersMongoDocument extends MongoDocument {
 	readonly password: string;
 
 	static serialize(userDocument: User): UsersMongoDocument {
-		const {
-			_id,
-			createdAt,
-			updatedAt,
-			firstName,
-			lastName,
-			email,
-			password,
-		} = userDocument;
+		const { _id, createdAt, updatedAt, firstName, lastName, email, password } = userDocument;
 
 		return {
 			_id: _id ? new ObjectId(_id) : null,
@@ -31,25 +23,9 @@ export class UsersMongoDocument extends MongoDocument {
 	}
 
 	static deserialize(userDocument: UsersMongoDocument): User {
-		const {
-			_id,
-			email,
-			firstName,
-			lastName,
-			createdAt,
-			updatedAt,
-			password,
-		} = userDocument;
+		const { _id, email, firstName, lastName, createdAt, updatedAt, password } = userDocument;
 
-		return new User(
-			_id?.toHexString(),
-			createdAt,
-			updatedAt,
-			firstName,
-			lastName,
-			email,
-			password,
-		);
+		return new User(_id?.toHexString(), createdAt, updatedAt, firstName, lastName, email, password);
 	}
 
 	static appendId(document: UsersMongoDocument, _id: ObjectId): User {
