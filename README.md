@@ -40,20 +40,15 @@ Make sure you have the following installed on your machine:
 
 ### Installation
 
-1. Clone the repository:
+1. Install dependencies:
 
-   ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
-   ```
-
-2. Install dependencies:
+In the `server` directory, run
 
    ```bash
    npm install
    ```
 
-3. Configure environment variables:
+2. Configure environment variables:
 
    Create a `.env` file at the root of the project and add the following environment variables:
 
@@ -99,7 +94,7 @@ src
 │   ├── swagger                             # Swagger configuration
 │   └── aop.module.ts                       # Main AOP module
 ├── api                                     # API layer
-│   ├── cashflows                           # Cashflow API-related components
+│   ├── budgets                             # Budgets API-related components
 │   └── users                               # User API-related components
 │       ├── controllers                     # User controllers
 │       ├── dto                             # Data Transfer Objects for user requests
@@ -107,7 +102,7 @@ src
 │       └── users-api.module.ts             # Main module for User API
 │   └── api.module.ts                       # Main API module
 ├── domain                                  # Domain layer
-│   ├── cashflows                           # Cashflow domain logic
+│   ├── budgets                             # Budgets domain logic
 │   └── shared                              # Shared resources or utilities across domains
 │   └── users                               # User domain logic
 │       ├── entities                        # User entities
@@ -124,7 +119,7 @@ src
 │           └── users.service.ts            # Main user service
 │       └── users.module.ts                 # User module definition
 ├── persistence                             # Persistence layer for data access
-│   ├── cashflows                           # Cashflow repository and persistence logic
+│   ├── budgets                             # Budgets repository and persistence logic
 │   └── users                               # User repository and persistence logic
 │       ├── users.entity.ts                 # User entity for persistence
 │       ├── users.repository.module.ts      # User repository module
@@ -138,7 +133,7 @@ src
 ### Domain Driven Design (DDD)
 
 - **User Domain**: Handles all user-related operations, such as creation, deletion etc.
-- **Cashflow Domain**: Manages cashflow-related operations, including CRUD operations for income and expense tracking.
+- **Budgets Domain**: Manages budget-related operations, including CRUD operations for income and expense tracking.
 
 ### AOP Modules
 
@@ -161,16 +156,6 @@ The Swagger documentation provides a comprehensive overview of all available end
 
 This documentation is automatically generated based on decorators used in the application controllers and models.
 
-## Contributing
-
-We welcome contributions from the community! To contribute:
-
-1. Fork this repository.
-2. Create a new branch: `git checkout -b feature/YourFeatureName`
-3. Make your changes and commit them: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature/YourFeatureName`
-5. Submit a pull request.
-
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License.

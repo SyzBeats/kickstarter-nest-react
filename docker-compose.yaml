@@ -8,7 +8,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: r00t
       MONGO_INITDB_ROOT_PASSWORD: iamSuper!ns3cur3
-      ME_CONFIG_MONGODB_URL: mongodb://r00t:iamSuper!ns3cur3@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://r00t:iamSuper!ns3cur3@mongo-db:27017/
       ME_CONFIG_BASICAUTH: false
     networks:
       - budget-planner-network
@@ -27,10 +27,10 @@ services:
       NODE_ENV: development
     volumes:
       - ./server:/app
+      - /app/node_modules # Preserves `node_modules` in the container
     networks:
       - budget-planner-network
-    links:
-      - mongo-db
+    container_name: nest-api
 
 networks:
   budget-planner-network:

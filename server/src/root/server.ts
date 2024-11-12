@@ -15,6 +15,8 @@ async function bootstrap() {
 	app.useGlobalPipes(
 		new ValidationPipe({
 			disableErrorMessages: !!keys.isProd,
+			// Ensure that only properties listed in DTOs are passed through
+			whitelist: true
 		}),
 	);
 
