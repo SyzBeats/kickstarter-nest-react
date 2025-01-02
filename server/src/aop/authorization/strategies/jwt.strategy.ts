@@ -15,9 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 	async validate(payload: any) {
 		// validating payload here
-		// Todo:
-		console.log(payload);
-
+		// Todo: Implement
 		if (payload) {
 			return;
 		}

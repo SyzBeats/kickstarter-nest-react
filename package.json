@@ -4,7 +4,8 @@
 	"description": "Kickstarting a react project with a simple budget planner UI",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev:server": "cd server && npm run start:dev"
 	},
 	"keywords": [],
 	"author": "Simeon Zimmermann - SZ WEB DEVELOPMENT",

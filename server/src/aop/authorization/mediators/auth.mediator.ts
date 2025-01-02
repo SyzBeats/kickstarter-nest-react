@@ -28,8 +28,6 @@ export class AuthMediator {
 	async signUp(input: CreateUserInput, context: AppContext) {
 		const hashedPassword = await this.encryptionService.hash(input.password);
 
-		console.log(hashedPassword);
-
 		const user = await this.usersService.create(
 			{
 				...input,

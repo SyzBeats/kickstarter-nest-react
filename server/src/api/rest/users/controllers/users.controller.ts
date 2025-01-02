@@ -23,7 +23,6 @@ export class UsersController {
 
 	@Get('/:id')
 	async getById(@Param('id') id: string, @Req() request: FastifyRequest['raw']): Promise<User> {
-		console.log("TEST")
 		return this.usersMediator.getById(id, request['raw'].appContext);
 	}
 
